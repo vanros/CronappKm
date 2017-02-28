@@ -1,0 +1,48 @@
+<%- model_class = Supply -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => "Abastecimentos" %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:data) %></th>
+      <th><%= model_class.human_attribute_name(:posto) %></th>
+      <th><%= model_class.human_attribute_name(:quilometragem) %></th>
+      <th><%= model_class.human_attribute_name(:litros) %></th>
+      <th><%= model_class.human_attribute_name(:combustivel) %></th>
+      <th><%= model_class.human_attribute_name(:preco) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @supplies.each do |supply| %>
+      <tr>
+        <td><%= link_to supply.id, supply_path(supply) %></td>
+        <td><%= supply.data %></td>
+        <td><%= supply.posto %></td>
+        <td><%= supply.quilometragem %></td>
+        <td><%= supply.litros %></td>
+        <td><%= supply.combustivel %></td>
+        <td><%= supply.preco %></td>
+        <td><%= supply.user_id %></td>
+        <td><%= supply.car_id %></td>
+        <td><%=l supply.created_at %></td>
+        <td>
+          <%= link_to t('.show', :default => t("helpers.links.show")),
+                      supply_path(supply), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_supply_path(supply), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      supply_path(supply),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_supply_path,
+            :class => 'btn btn-primary', :style=>'color: white' %>
