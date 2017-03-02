@@ -1,0 +1,31 @@
+
+<%- model_class = Supply -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+
+      <th><%= model_class.human_attribute_name(:data) %></th>
+      <th><%= model_class.human_attribute_name(:posto) %></th>
+      <th>Média de Consumo</th>
+      <th>Rentabilidade</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @supplies.each do |supply| %>
+      <tr>
+
+        <td><%= supply.data %></td>
+        <td><%= supply.posto %></td>
+        <td><%= supply.quilometragem/supply.litros%></td>
+        <td><%= supply.quilometragem/supply.preco%></td>
+
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -22,6 +22,10 @@ class SuppliesController < ApplicationController
   def edit
   end
 
+  def query
+    @supplies = Supply.all
+  end
+
   # POST /supplies
   # POST /supplies.json
   def create
